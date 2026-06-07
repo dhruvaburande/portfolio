@@ -24,16 +24,11 @@
   --sans:   "DM Sans", system-ui, sans-serif;
 
   /* Strict Segregated Typographic Tiers */
-  --fs-name: clamp(60px, 8vw, 96px);
-  /* Main Hero Identity (Biggest) */
-  --fs-heading: clamp(32px, 4vw, 44px);
-  /* Main Section Titles & Display Numbers */
-  --fs-subheading: 22px;
-  /* Logo, Job Roles, Card Titles, Small Headers */
-  --fs-body: 18px;
-  /* Standard Paragraph Copy, Lists, Content Descriptions */
-  --fs-nav: 16px;
-  /* Navigation Links, Buttons, Tags, Dates (Lowest Baseline) */
+  --fs-name: clamp(60px, 8vw, 96px);       /* Main Hero Identity (Biggest) */
+  --fs-heading: clamp(32px, 4vw, 44px);   /* Main Section Titles & Display Numbers */
+  --fs-subheading: 22px;                  /* Logo, Job Roles, Card Titles, Small Headers */
+  --fs-body: 18px;                        /* Standard Paragraph Copy, Lists, Content Descriptions */
+  --fs-nav: 16px;                         /* Navigation Links, Buttons, Tags, Dates (Lowest Baseline) */
 }
 
 body.light-mode {
@@ -58,7 +53,7 @@ body {
   font-weight: 300;
 }
 
-body, nav, .nav-links, .proj-card, .proj-card-wide, .service-item, .commission-block, .cert-link-block, .contact-links {
+body, nav, .nav-links, .proj-card, .proj-card-wide, .service-item, .commission-block, .cert-link-block {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -96,6 +91,7 @@ body.light-mode nav {
   color: var(--ink);
   letter-spacing: 0.03em;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -132,7 +128,7 @@ body.light-mode nav {
 .theme-toggle:hover { color: var(--gold); }
 .theme-toggle svg { display: block; }
 
-@media (min-width: 721px) {
+@media (min-width: 992px) {
   .nav-links {
     margin-left: auto;
     margin-right: 32px;
@@ -246,12 +242,6 @@ h1.hero-name em {
 }
 
 .hero-contact a:hover { color: var(--gold); }
-
-.hero-cta {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
 
 .btn {
   display: inline-flex;
@@ -399,28 +389,6 @@ h2.section-title {
   top: 2px;
 }
 
-/* HIGHLIGHT ALL BOXES CONTAINING NAVIGATION LINKS IN THE BODY */
-.proj-card, .proj-card-wide, .commission-block, .cert-link-block, .contact-links {
-  display: flex;
-  border: 1px solid var(--gold2);
-  background: rgba(201,169,110,0.03);
-}
-
-body.light-mode .proj-card, 
-body.light-mode .proj-card-wide, 
-body.light-mode .commission-block, 
-body.light-mode .cert-link-block, 
-body.light-mode .contact-links {
-  background: rgba(201,169,110,0.06);
-  border: 1px solid var(--gold2);
-}
-
-.proj-card:hover, .proj-card-wide:hover, .commission-block:hover, .cert-link-block:hover, .contact-links:hover {
-  background: rgba(201,169,110,0.08);
-  border-color: var(--gold);
-  box-shadow: 0 0 12px rgba(201,169,110,0.15);
-}
-
 /* PROJECTS GRID */
 .projects-grid {
   display: grid;
@@ -429,13 +397,16 @@ body.light-mode .contact-links {
 }
 
 .proj-card {
+  display: flex;
   flex-direction: column;
+  border: 1px solid var(--border2);
+  background: var(--bg2);
+  transition: background 0.25s, border-color 0.25s;
 }
 
-.proj-card-wide {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 380px 1fr;
+.proj-card:hover {
+  background: var(--bg3);
+  border-color: var(--gold2);
 }
 
 .proj-card-img {
@@ -505,6 +476,20 @@ body.light-mode .contact-links {
   background: rgba(201,169,110,0.06);
 }
 
+.proj-card-wide {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  border: 1px solid var(--border2);
+  background: var(--bg2);
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.proj-card-wide:hover {
+  background: var(--bg3);
+  border-color: var(--gold2);
+}
+
 .proj-card-wide-img {
   width: 100%;
   height: 100%;
@@ -571,8 +556,9 @@ body.light-mode .contact-links {
 }
 
 .commission-block {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
   padding: 40px;
-  flex-direction: column;
 }
 
 .commission-block h3 {
@@ -631,7 +617,10 @@ body.light-mode .contact-links {
 
 /* CERTIFICATES */
 .cert-link-block {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
   padding: 48px 40px;
+  display: flex;
   flex-direction: column;
   gap: 20px;
   max-width: 560px;
@@ -651,11 +640,7 @@ body.light-mode .contact-links {
   align-items: start;
 }
 
-.contact-links {
-  flex-direction: column;
-  gap: 12px;
-  padding: 32px 30px;
-}
+.contact-links { display: flex; flex-direction: column; gap: 12px; }
 
 .contact-portrait {
   width: 200px;
@@ -710,7 +695,7 @@ footer {
 .fade-in:nth-child(6) { animation-delay: 0.5s; }
 .fade-in:nth-child(7) { animation-delay: 0.6s; }
 
-@media (max-width: 720px) {
+@media (max-width: 991px) {
   nav { padding: 0 20px; }
 
   .nav-links {
@@ -739,10 +724,20 @@ footer {
 
   .nav-toggle { display: flex; }
 
-  section, #hero { padding-left: 20px; padding-right: 20px; }
+  section { padding-left: 20px; padding-right: 20px; }
+  
+  #hero { 
+    padding-left: 20px; 
+    padding-right: 20px; 
+    min-height: auto;
+    padding-top: 100px;
+    padding-bottom: 60px;
+    justify-content: flex-start;
+  }
+  
   .exp-item { grid-template-columns: 1fr; }
   .exp-dates { text-align: left; }
-  .projects-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr !important; }
   .proj-card-wide { grid-template-columns: 1fr; }
   .proj-card-wide-img { height: 220px; }
   .contact-layout { grid-template-columns: 1fr; }
@@ -781,7 +776,8 @@ footer {
   <div class="hero-eyebrow fade-in">Portfolio · 2026</div>
   <h1 class="hero-name fade-in">Dhruva<br><em>Burande</em></h1>
   <p class="hero-tagline fade-in">Writer. Poet. Editor. Published in two anthologies and counting.</p>
-  <p class="hero-desc fade-in">English Literature · Content Writer · Published Poet.<br>Postgraduate from Modern College, Pune. Writing across forms — editorial, creative, critical.</p>
+  <p class="hero-desc fade-in">English Literature · Content Writer · Published Poet.<br>
+  Postgraduate from Modern College, Pune. Writing across forms — editorial, creative, critical.</p>
   <div class="hero-contact fade-in">
     <a href="tel:+919970640510">+91-9970640510</a>
     <span>·</span>
@@ -1057,7 +1053,6 @@ footer {
 <section id="contact">
   <div class="section-label">Contact</div>
   <h2 class="section-title">Get in Touch</h2>
-  
   <div class="contact-layout">
     <div class="contact-links">
       <p style="font-size:var(--fs-body);color:var(--ink3);line-height:1.75;margin-bottom:8px;max-width:380px;">Available for content writing, editorial projects, proofreading, tutoring, and academic writing. Reach out directly by phone or email.</p>
@@ -1090,8 +1085,10 @@ document.addEventListener('click', function(e) {
 });
 
 const themeToggle = document.getElementById('themeToggle');
+
 const moonSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
 const sunSVG  = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+
 themeToggle.addEventListener('click', function() {
   document.body.classList.toggle('light-mode');
   if (document.body.classList.contains('light-mode')) {
